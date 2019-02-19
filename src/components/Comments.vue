@@ -1,17 +1,20 @@
 <template>
 	<div>
     <div class="container card" v-if="com && com.length" >
-    	<div >
-    	<div class="card-body text-center"><b>{{this.data.title}}</b><br>post</div>
+
+    	<div class="card-body text-center"><b>{{data.title}}</b><br>post</div>
     	<div class="card-body">
-    		 {{this.data.body}}
+    		 {{data.body}}
+    		 <hr>
     	</div>
-    	<div class="card-body" v-for="comm in com" >
+    	<div class="card-body" v-for="comm in com">
+
     		 {{comm.body}}
+
     		 <!-- {{this.data.id}} -->
     	</div>
+        <app-auth :data="data"></app-auth>
 
-    	</div>
      </div>
     </div>
 	</div>
@@ -19,6 +22,7 @@
 
 <script >
 import axios from 'axios'
+import Author2 from '@/components/Author'
 	export default{
 		props: ['data'],
   data(){
@@ -34,6 +38,9 @@ import axios from 'axios'
       .then((response)=>{
       	console.log(response)
       	this.com = response.data})
+  },
+  components: {
+  	'app-auth': Author2
   }
 	}
 </script>
